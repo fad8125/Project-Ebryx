@@ -16,31 +16,35 @@
 
 </head>
 <body>
+  <h1> My Map!</h1>
 
   <div id="map"></div>
 
+  <!-- Java Script  Starts from here -->
   <script>
         function initMap(){
-          //Options For Map
-          var options = {
-            zoom: 10,
-            center:{lat:31.5204, lng:74.3587}
-          }
 
           //Defense location = 31.4715, 74.4584
           //lahore locaion = 31.5204, 74.3587
           var defense = {lat:31.4715, lng:74.4584};
           var lahore = {lat:31.5204, lng:74.3587};
 
+          //Options For Map
+          var options = {
+            zoom: 10,
+            center: lahore
+          }
+
           //Map returend for the specific position
           var map = new google.maps.Map(document.getElementById('map'), options);
           //Adding a marker
           var marker = new google.maps.Marker({position: defense, map: map});
-          //var marker = new google.maps.Marker({position: options, map: map});
+          //Adding another marker at Lahore
           var marker = new google.maps.Marker({position: lahore, map : map});
         }
   </script>
 
+  <!--Using the google map API here -->
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwZqt4BMAykx7a4j2r0u9YTseGjltADBQ&callback=initMap">
   </script>
