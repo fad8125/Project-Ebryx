@@ -8,8 +8,8 @@
 
   <style>
     #map{
-      height: 350px;
-      width: 650px;
+      height: 400px;
+      width: 100%;
     }
 
   </style>
@@ -21,17 +21,23 @@
 
   <script>
         function initMap(){
+          //Options For Map
           var options = {
-            zoom: 14,
-            center:{lat:31.474538, lng:74.301550}
+            zoom: 10,
+            center:{lat:31.5204, lng:74.3587}
           }
 
-          //My location = 31.474538, 74.301550
+          //Defense location = 31.4715, 74.4584
+          //lahore locaion = 31.5204, 74.3587
+          var defense = {lat:31.4715, lng:74.4584};
+          var lahore = {lat:31.5204, lng:74.3587};
 
+          //Map returend for the specific position
           var map = new google.maps.Map(document.getElementById('map'), options);
-
-          //var maps = new google.maps.Map();
-          //var marker = new google.maps.Marker({position: uluru, map: map});
+          //Adding a marker
+          var marker = new google.maps.Marker({position: defense, map: map});
+          //var marker = new google.maps.Marker({position: options, map: map});
+          var marker = new google.maps.Marker({position: lahore, map : map});
         }
   </script>
 
