@@ -33,15 +33,40 @@
           var options = {
             zoom: 10,
             center: lahore
-          }
+          };
 
           //Map returend for the specific position
           var map = new google.maps.Map(document.getElementById('map'), options);
           //Adding a marker
           var marker = new google.maps.Marker({position: defense, map: map});
+
           //Adding another marker at Lahore
-          var marker = new google.maps.Marker({position: lahore, map : map});
+          var marker = new google.maps.Marker({
+            position: lahore,
+            map : map,
+            icon : 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+            title: 'Lahore'
+          });
+
+          var informationWindow = new google.maps.InfoWindow({
+            content: '<h1> Lahore,Second Largest City of Pakistan, 54000</h1>'
+          });
+
+          marker.addListener('click', function(){
+            informationWindow.open(map, marker);
+          });
+
+
+          /*var marker = new google.maps.Marker({
+              position: defense,
+              map: map,
+              draggable:true,
+              title:"Drag me!"
+          });*/
+
         }
+
+
   </script>
 
   <!--Using the google map API here -->
