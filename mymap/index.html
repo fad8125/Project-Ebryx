@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>My Google Map</title>
 
+<!--CSS stying here -->
   <style>
     #map{
       height: 400px;
@@ -37,8 +38,11 @@
 
           //Map returend for the specific position
           var map = new google.maps.Map(document.getElementById('map'), options);
+
+
+/*
           //Adding a marker
-          var marker = new google.maps.Marker({position: defense, map: map});
+          var markerDefense = new google.maps.Marker({position: defense, map: map});
 
           //Adding another marker at Lahore
           var marker = new google.maps.Marker({
@@ -48,21 +52,79 @@
             title: 'Lahore'
           });
 
+          //Takes the last 'marker' which is being used; therefore, we get a popup when we click on defense
           var informationWindow = new google.maps.InfoWindow({
             content: '<h1> Lahore,Second Largest City of Pakistan, 54000</h1>'
+          });
+
+          var informationWindowD = new google.maps.InfoWindow({
+            content: '<h1> Defense biggest housing authority</h1>'
           });
 
           marker.addListener('click', function(){
             informationWindow.open(map, marker);
           });
+          //A seperate listener for a seperate marker
+          markerDefense.addListener('click', function(){
+            informationWindowD.open(map, markerDefense);
+          });
+*/
+
+        //Alternative apporach to the previous method, this is efficient than the earlier one
+          function addingMarker(props){
+
+            var marker = new google.maps.Marker({
+              position: props.loc,
+              map : map,
+              //icon : props.imageMark,
+              title: props.title
+
+            });
+
+            //Because of this we don't have to mention the image mark in the addingMarker(props) method
+            if(props.imageMark != null){
+                marker.setIcon(props.imageMark);
+            }
+
+            //Similar Reason as before
+            if(props.content != null){
+
+              var informationWindow = new google.maps.InfoWindow({
+                content:props.content
+              });
+
+              marker.addListener('click', function(){
+                informationWindow.open(map, marker);
+              });
+            }
 
 
-          /*var marker = new google.maps.Marker({
-              position: defense,
-              map: map,
-              draggable:true,
-              title:"Drag me!"
-          });*/
+          }
+
+
+          //Calling the constructed methods for differente locations but two problems as we are getting the same flag and same message 'title'
+          addingMarker({
+            loc:lahore,
+            imageMark: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+            title:'Lahore',
+            content: '<h1>Lahore, the second most populous and developed city of Pakistan, 54000</h1>'
+          });
+          addingMarker({loc:defense});
+          //Islamabad's Location
+          addingMarker({
+            loc:{lat:33.6844, lng:73.0479},
+            imageMark:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+            title:'Islamabad',
+            content: 'Islamabad is the capital city of Pakistan'
+          });
+
+          addingMarker({
+            loc:{lat:55.8642, lng:-4.2518},
+            imageMark:'http://www.auspak.edu.pk/wp-content/uploads/2017/11/UK_Flag-50x50.png',
+            title:'Glasgow',
+            content:'Glasgow has one of the finest university called "University of Glasgow"'
+          });
+
 
         }
 
