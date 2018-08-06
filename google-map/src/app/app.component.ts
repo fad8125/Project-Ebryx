@@ -53,10 +53,24 @@ export class AppComponent {
 
   //Making the methods which are called in the html
   clickedMarker(marker:marker, index:number){
-    
+    console.log('Clicked Marker' + marker.name + 'at index' + index);
 
   }
 
+  //We are clicking and adding a marker and it cannot be dragged
+  clickMap($event:any){
+
+    var newMarker = {
+      name:'Undecided',
+      lat: $event.coords.lat,
+      lng: $event.coords.lng,
+      dragging: false
+
+    }
+
+    this.markers.push(newMarker);
+
+  }
 
 }
 
