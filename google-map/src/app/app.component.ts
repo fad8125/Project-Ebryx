@@ -11,6 +11,13 @@ export class AppComponent {
   //Map zoomed by 8 - zooms in a bit
   zoom: number = 8;
 
+  //Values
+  markerName:string;
+  markerLat:string;
+  markerLng:string;
+  markerDrag:string;
+
+
   //Lahore's lat lng
   lat: number = 31.5204;
   lng: number = 74.3587;
@@ -37,13 +44,14 @@ export class AppComponent {
       lng : 74.5229,
       draggable : true
 
-    },
+    } /*,
+
     {
       name : 'Lahore',
       lat: 31.5204,
       lng: 74.3587,
       draggable : true
-    }
+    }*/
 
   ];
 
@@ -64,12 +72,48 @@ export class AppComponent {
       name:'Undecided',
       lat: $event.coords.lat,
       lng: $event.coords.lng,
-      dragging: false
+      draggable: false
 
     }
 
     this.markers.push(newMarker);
 
+  }
+
+
+  markerDragEnd(marker:any, $event:any){
+    console.log('dragEnd is working',marker, $event);
+
+    var updateMarker = {
+      name: marker.name,
+      lat: parseFloat(marker.lat),
+      lng: parseFloat(marker.lng),
+      draggable: false
+    }
+
+    var newLat = $event.coords.lat;
+    var newLng = $event.coords.lng;
+
+  }
+
+  addMarker(){
+    console.log('Adding a marker');
+    if(this.markerDrag == 'yes'){
+      var isDraggable = true;
+
+    }else{
+      var isDraggable = false;
+    }
+
+    var newMarker = {
+      name: this.markerName,
+      lat: parseFloat(this.markerLat),
+      lng: parseFloat(this.markerLng),
+      draggable: isDraggable
+
+    }
+
+    this.markers.push(newMarker);
   }
 
 }
