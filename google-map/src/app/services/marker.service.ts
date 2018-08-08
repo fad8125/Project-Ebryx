@@ -18,4 +18,17 @@ export class MarkerService extends Init {
     var markers = JSON.parse(localStorage.getItem('markers'));
     return markers;
   }
+
+  addMarker(newMarker){
+    //Getting the curreently present markers which are mapped
+    var markers = JSON.parse(localStorage.getItem('markers'));
+
+    //Now we want to push the new ones
+    markers.push(newMarker);
+
+    //Now updating the local storage again by setting the markers
+    //localStorage.setItem('markers', JSON.stringify(markers));
+    localStorage.setItem('markers', JSON.stringify(markers));
+
+  }
 }
