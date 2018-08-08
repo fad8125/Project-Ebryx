@@ -100,6 +100,9 @@ export class AppComponent {
     var newLat = $event.coords.lat;
     var newLng = $event.coords.lng;
 
+    //Going to create this new method with the updateMarkerOvj and the pre=assigned newLat and newLng
+    this._markerService.updateMarker(marker, newLat, newLng);
+
   }
 
   addMarker(){
