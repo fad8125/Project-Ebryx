@@ -126,6 +126,19 @@ export class AppComponent {
     this._markerService.addMarker(newMarker);
   }
 
+  //Creating remove marker which is called in the html
+
+  removeMarker(marker){
+    console.log('Marker should be removed');
+    for(var i = 0 ; i < this.markers.length ; i++){
+      if(marker.lat == this.markers[i].lat && marker.lng == this.markers[i].lng){
+        this.markers.splice(i,1);
+
+      }
+
+    }
+  }
+
 }
 
 
