@@ -137,6 +137,8 @@ export class AppComponent {
       }
 
     }
+    //Will be creating the removeMarker() method in the service so that we can delete the markers from the databse permamnently
+    this._markerService.removeMarker(marker);
   }
 
 }
